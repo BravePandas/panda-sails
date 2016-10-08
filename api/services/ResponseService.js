@@ -28,11 +28,17 @@
                 question = 'Can you give move detail?';
                 break;
             case 7:
+            case 8:
                 question = 'You can send more details or photos (reply with done to finish)';
                 break;
 
         }
-        return '<Message><Response>'+question+'</Message></Response>';
+        if (question) {
+            return '<Message><Response>'+question+'</Message></Response>';
+        } else {
+            return false;
+        }
+        
     };
 
     module.exports = {
