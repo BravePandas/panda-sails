@@ -34,7 +34,7 @@
 
         }
         if (question) {
-            return '<Message><Response>'+question+'</Message></Response>';
+            return '<Message><Response>'+question+'</Response></Message>';
         } else {
             return false;
         }
