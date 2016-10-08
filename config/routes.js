@@ -1,4 +1,4 @@
 module.exports.routes = {
-  'POST /report': 'ReportController.post',
+  'POST /report': 'ReportSessionController.post',
   'POST /sms/request': 'SMSController.request'
 };

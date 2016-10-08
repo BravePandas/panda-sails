@@ -27,11 +27,15 @@ module.exports = {
         },
         
         date: {
-            type: 'date'
+            type: 'string'
         },
         
         time: {
-            type: 'time'
+            type: 'string'
+        },
+        
+        incidentDateTime: {
+            type: 'datetime'
         },
         
         description: {

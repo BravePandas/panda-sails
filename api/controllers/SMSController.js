@@ -48,7 +48,7 @@ module.exports = {
                                     });
                                 break;
                             case 3: 
-                                var isCurrentlyHappening = req.body.Body === 'yes' ? true : false;
+                                var isCurrentlyHappening = req.body.Body.toLowerCase() === 'yes' ? true : false;
                                 stage = 4;
                                 if (isCurrentlyHappening) { stage = 6; }
                                 ReportSession
