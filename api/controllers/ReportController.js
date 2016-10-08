@@ -4,8 +4,9 @@
  * @description :: Server-side logic for managing activities
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-
 'use strict';
+
+var request = require('request');
 
 /* globals Report, sails */
 module.exports = {
@@ -15,6 +16,16 @@ module.exports = {
             latitude:       req.body.latitude,
             longitude:      req.body.longitude,
         }).then(function(){
+            
+            request.post({
+                url:'http://service.com/upload',
+                form: {key:'value'}
+            }).then(function(response){
+                console.log(response);
+            });
+
+            
+            
             res.send(200);
         }).catch(function(err){
             sails.log(err);
