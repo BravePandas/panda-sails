@@ -32,7 +32,7 @@
                 break;
 
         }
-        return question;
+        return '<Message><Response>'+question+'</Message></Response>';
     };
 
     module.exports = {
