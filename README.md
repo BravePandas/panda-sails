@@ -1,3 +1,16 @@
-# panda-sails
+# Brave Pandas - Rafiki
 
-a [Sails](http://sailsjs.org) application
+API Definition
+--------------
+
+Submission -> Reporting -> Predict
+
+/api/report
+
+{
+    description,
+    location: {
+        latitude: Float
+        longitude
+    }
+}
