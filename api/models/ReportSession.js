@@ -34,7 +34,7 @@ module.exports = {
             type: 'string'
         },
         
-        incidentDateTime: {
+        dateTime: {
             type: 'datetime'
         },
         

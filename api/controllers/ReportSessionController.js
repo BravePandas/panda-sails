@@ -15,6 +15,7 @@ module.exports = {
             isCurrentlyHappening: req.body.isCurrentlyHappening,
             date: req.body.date,
             time: req.body.time,
+            dateTime: req.body.dateTime,
             description: req.body.description,
             sessionId: req.sessionID
         }).then(function(created){
