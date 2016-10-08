@@ -19,68 +19,76 @@ module.exports = {
         // 
         
         req.sessionID = 'override';
-        
-        ReportSession.findOne({'sessionId': req.sessionID})
-            .then(function(reportSession){
+
+        ReportSession.findOne({sessionId: req.sessionID})
+            .then(function(reportSession){                
+                
+                console.log(reportSession);
+                var description = [],
+                    stage = 1;
+                    
                 if (reportSession) {
-                    
-                    if (reportSession.stage < 7) {
-                        reportSession.stage = reportSession.stage + 1;
-                    }
-                    
-                    switch (reportSession.stage) {    
-                        case 1: // Where
-                            reportSession.where = req.body.Body;
-                            break;
-                        case 2: // When
-                            reportSession.when = req.body.Body;
-                            break;
-                        case 3: // Happening Right Now?
-                            reportSession.isCurrentlyHappening = req.body.Body==='yes'?true:false;
-                            // reportSession.date = Date.now();
-                            // reportSession.time = Date.now();
-                            break;
-                        case 4: // Date
-                            // reportSession.date = Date.now();
-                            break;
-                        case 5: // Time
-                            // reportSession.time = Date.now();
-                            break;
-                        case 6: // Description
-                            if (!reportSession.description) {
-                                reportSession.description = [];
-                            }
-                            reportSession.description.push({
-                                text: req.body.Body
-                            });
-                            break;
-                        case 7:
-                            if (!reportSession.description) {
-                                reportSession.description = [];
-                            }
-                            reportSession.description.push({
-                                text: req.body.Body
-                            });
-                            break;
-                    }
-                    
-                    
-                    reportSession.save().then(function(err){
-                        if (!err) {
-                            res.send(ResponseService.questionResponse(reportSession.stage));
-                        } else {
-                            sails.log(err);
-                        }
-                    });
-                } else {
-                    sails.log("Creating new report");
-                    ReportSession.create({
-                        stage: 1,
-                        sessionId: req.sessionID
-                    }).then(function(r){
-                        res.send(ResponseService.questionResponse(r.stage));
-                    });
+                    stage = reportSession.stage;
                 }
+
+                
+                switch (stage) {    
+                    case 1: // Where
+                        if (reportSession) {
+                            ReportSession
+                                .update({sessionId: req.sessionID}, {stage: 2, where: req.body.Body})
+                                .catch(function(err){
+                                    sails.log(err);
+                                });
+                        } else {
+                            ReportSession
+                                .create({stage: 2, where: req.body.Body, sessionId: req.sessionID})
+                                .catch(function(err){
+                                    sails.log(err);
+                                });
+                        }
+                        break;
+                    case 2:
+                        ReportSession
+                            .update({'sessionId': req.sessionID}, {stage: 3, what: req.body.Body})
+                            .catch(function(err){
+                                sails.log(err);
+                            });
+                        break;
+                    case 3: 
+                        var isCurrentlyHappening = req.body.Body === 'yes' ? true : false;
+                        ReportSession
+                            .update({'sessionId': req.sessionID}, {stage: 4, isCurrentlyHappening: isCurrentlyHappening})
+                            .catch(function(err){
+                                sails.log(err);
+                            });
+                        break;
+                    case 4:
+                        ReportSession
+                            .update({'sessionId': req.sessionID}, {stage: 5})
+                            .catch(function(err){
+                                sails.log(err);
+                            });
+                        break;
+                    case 5:
+                        ReportSession
+                            .update({'sessionId': req.sessionID}, {stage: 6})
+                            .catch(function(err){
+                                sails.log(err);
+                            });
+                        break;
+                    case 6:
+                    case 7:
+                    if (reportSession.description) { description = reportSession.description; }
+                        description.push({text: req.body.Body});
+                        ReportSession
+                            .update({'sessionId': req.sessionID}, {stage: 7, description: description})
+                            .catch(function(err){
+                                sails.log(err);
+                            });
+                        break;
+                }
+                res.send(ResponseService.questionResponse(stage));
             });
         
         

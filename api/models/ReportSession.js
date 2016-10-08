@@ -1,5 +1,5 @@
 /**
- * Report.js
+ * ReportSession.js
  */
 
 'use strict';
@@ -43,5 +43,5 @@ module.exports = {
         }
     },
 
-    schema:true
+    schema: true
 };
