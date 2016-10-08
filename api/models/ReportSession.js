@@ -44,6 +44,14 @@ module.exports = {
         
         sessionId: {
             type: 'string'
+        },
+        
+        latitude: {
+            type: 'float'
+        },
+
+        longitude: {
+            type: 'float'
         }
     },
 
