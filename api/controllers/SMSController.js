@@ -6,11 +6,16 @@
  */
 'use strict';
 
-var gateway = require('twillo'),
+var gateway = require('twilio'),
     accountSSID = 'ACa512c0bad81f66d5df539deee5e0fa96',
     authToken = '5f5bd304e479d0b75cb3e72c0a7cd16b';
 
 /* globals Report, sails */
 module.exports = {
-    
+    request: function(req, res) 
+    {
+        console.log(req.body);
+        console.log(req.sessionID);
+        res.send(200);
+    }    
 };
