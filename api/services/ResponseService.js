@@ -2,8 +2,6 @@
 (function () {
     'use strict';
 
-    var Promise = require("bluebird");
-    
     var translations = {
         'en': {
             1: 'Where are you?',
