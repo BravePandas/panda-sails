@@ -23,6 +23,7 @@
     "sails": "~0.12.3",
     "sails-disk": "~0.10.9",
     "sails-mongo": "^0.12.1",
+    "sails-seed": "^0.5.0",
     "twilio": "^2.11.0"
   },
   "scripts": {
@@ -35,5 +36,8 @@
     "url": "git://github.com/dora/panda-sails.git"
   },
   "author": "dora",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "barrels": "^1.6.4"
+  }
 }
