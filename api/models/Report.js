@@ -9,7 +9,15 @@ module.exports = {
     attributes: {
 
         description: {
+            type: 'array'
+        },
+        
+        originator: {
             type: 'string'
+        },
+        
+        type: {
+            model: 'type'
         },
 
         latitude: {
@@ -18,7 +26,12 @@ module.exports = {
 
         longitude: {
             type: 'float'
+        },
+        
+        date: {
+            type: 'datetime'
         }
+
     },
 
     schema:true
