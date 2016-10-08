@@ -7,7 +7,7 @@
 module.exports = {
 
     attributes: {
-        
+
         description: {
             type: 'string'
         },
@@ -19,7 +19,6 @@ module.exports = {
         longitude: {
             type: 'float'
         }
-
     },
 
     schema:true

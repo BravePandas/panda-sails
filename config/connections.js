@@ -1,4 +1,3 @@
-
 module.exports.connections = {
     mongodbServer: {
       adapter: 'sails-mongo',

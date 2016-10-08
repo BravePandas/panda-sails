@@ -8,9 +8,7 @@ Submission -> Reporting -> Predict
 /api/report
 
 {
-    description,
-    location: {
-        latitude: Float
-        longitude
-    }
+    description: String,
+    latitude: Float
+    longitude: Float
 }
