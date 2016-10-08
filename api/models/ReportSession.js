@@ -8,6 +8,11 @@ module.exports = {
 
     attributes: {
 
+        complete: {
+            type: 'boolean',
+            default: false
+        },
+
         stage: {
             type: 'integer',
             enum: [1, 2, 3, 4, 5, 6, 7]

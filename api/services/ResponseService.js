@@ -6,7 +6,6 @@
 
     var questionResponse = function(stage)
     {
-        console.log("stage: "+stage);
         var question;
         switch(stage) {
             case 1:
@@ -28,6 +27,9 @@
             case 7:
             case 8:
                 question = 'Please send as much detail as you can including photos (reply with done to finish)';
+                break;
+            case 999:
+                question = 'Thank you for your report.';
                 break;
         }
         if (question) {

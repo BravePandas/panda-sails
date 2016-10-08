@@ -25,6 +25,14 @@ module.exports = {
                     sails.log(err);
                 });
             stage = 1;
+        } else if (req.body.Body.toLowerCase() === "done") {
+            ReportSession
+                .update({sessionId: req.sessionID}, {complete: true, sessionId: req.sessionID+'-'+Math.random().toString(36).substring(7)}).then(function(){
+                    res.send(ResponseService.questionResponse(999));
+                }).catch(function(err){
+                    sails.log(err);
+                });
+            stage = 999;
         } else {
             ReportSession.findOne({sessionId: req.sessionID})
                 .then(function(reportSession){
@@ -40,7 +48,6 @@ module.exports = {
                                     });
                                 break;
                             case 2:
-                            console.log('what');
                                 ReportSession
                                     .update({'sessionId': req.sessionID}, {stage: 3, what: req.body.Body})
                                     .catch(function(err){
