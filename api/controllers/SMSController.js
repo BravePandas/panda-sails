@@ -49,8 +49,10 @@ module.exports = {
                                 break;
                             case 3: 
                                 var isCurrentlyHappening = req.body.Body === 'yes' ? true : false;
+                                stage = 4;
+                                if (isCurrentlyHappening) { stage = 6; }
                                 ReportSession
-                                    .update({'sessionId': req.sessionID}, {stage: 4, isCurrentlyHappening: isCurrentlyHappening})
+                                    .update({'sessionId': req.sessionID}, {stage: stage, isCurrentlyHappening: isCurrentlyHappening})
                                     .catch(function(err){
                                         sails.log(err);
                                     });

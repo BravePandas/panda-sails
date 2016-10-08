@@ -25,13 +25,10 @@
                 question = 'What time did this happen?';
                 break;
             case 6:
-                question = 'Can you give move detail?';
-                break;
             case 7:
             case 8:
-                question = 'You can send more details or photos (reply with done to finish)';
+                question = 'Please send as much detail as you can including photos (reply with done to finish)';
                 break;
-
         }
         if (question) {
             return '<Response><Message>'+question+'</Message></Response>';
