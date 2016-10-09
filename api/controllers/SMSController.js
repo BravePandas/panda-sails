@@ -80,7 +80,7 @@ module.exports = {
                                 if (req.body.Body.toLowerCase() === 'yes') {
                                     console.log("HAPPENING");
                                     isCurrentlyHappening = true;
-                                    s = 6;
+                                    s = 7;
                                 } else {
                                     console.log("NOT HAPPENING");
                                     isCurrentlyHappening = false;
