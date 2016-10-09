@@ -5,7 +5,7 @@
     var translations = {
         'en': {
             1: 'Hello, Rafiki here. What would you like to report?',
-            2: 'Help me file your report. Pick a number: 1. Poaching 2. Trafficking and Illegal Trade 3. Human-Animal Conflict 4. Intelligence',            
+            2: 'Help me file your report. Pick a number:%0a 1. Poaching 2. Trafficking and Illegal Trade 3. Human-Animal Conflict 4. Intelligence',            
             3: 'Where is it happening?',
             4: 'Is this happening right now?',
             5: 'When did it happen?',
