@@ -15,8 +15,13 @@ module.exports = {
         var stage;
         if (req.body.Body.toLowerCase() === "rafiki") {
             ReportSession
-                .create({stage: 1, sessionId: req.sessionID}).then(function(){
-                    res.send(ResponseService.questionResponse(1));
+                .update({sessionId: req.sessionID}, {complete: true, sessionId: req.sessionID+'-'+Math.random().toString(36).substring(7)}).then(function(){
+                    ReportSession
+                        .create({stage: 1, sessionId: req.sessionID}).then(function(){
+                            res.send(ResponseService.questionResponse(1));
+                        }).catch(function(err){
+                            sails.log(err);
+                        });
                 }).catch(function(err){
                     sails.log(err);
                 });

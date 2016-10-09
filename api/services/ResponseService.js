@@ -4,13 +4,14 @@
 
     var translations = {
         'en': {
-            1: 'Where are you?',
-            2: 'What are you reporting?',
-            3: 'Is the incident happening right now?',
-            4: 'What date did this happen?',
-            5: 'What time did this happen?',
-            6: 'Please send as much detail as you can including photos (reply with done to finish)',
-            7: 'Thank you for your report.'
+            1: 'Hello, Rafiki here. What would you like to report?',
+            2: 'Help me file your report. Pick a number:\n 1. Poaching\n 2. Trafficking & Illegal Trade\n 3. Human-Animal Conflict\n 4. Pollution\n 5. Intelligence',
+            3: 'Where is it happening?',
+            4: 'Is this happening right now?',
+            5: 'When did it happen?',
+            6: 'Please describe the incident. You can send photos too',
+            7: 'Please give as much detail as you can. Say bye to finish',
+            8: 'Thank you, I’ve told the rangers. If you’re happy to be contacted, tell me your name. You will remain anonymous if you don’t respond.'
         },
         'ro': {
             1: '',
