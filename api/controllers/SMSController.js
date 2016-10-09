@@ -26,7 +26,8 @@ module.exports = {
                     sails.log(err);
                 });
             stage = 1;
-        } else if (req.body.Body.toLowerCase() === "done") {
+        } else if (req.body.Body.toLowerCase() === "done" || req.body.Body.toLowerCase() === "bye") {
+            console.log('finished');
             ReportSession
                 .update({sessionId: req.sessionID}, {complete: true, sessionId: req.sessionID+'-'+Math.random().toString(36).substring(7)}).then(function(){
                     res.send(ResponseService.questionResponse(999));
@@ -40,51 +41,73 @@ module.exports = {
                     if (reportSession) {
                         stage = reportSession.stage;
                         var description = [];
+                        
+                        console.log('============================');
+                        console.log("BODY:" + req.body.Body);
+                        console.log('STAGE: '+reportSession.stage);
+                        console.log('============================');
+                        
                         switch (reportSession.stage) {
-                            case 1: // Where
+                            case 1: // Hello
+                            console.log('1');
                                 ReportSession
                                     .update({sessionId: req.sessionID}, {stage: 2, where: req.body.Body})
                                     .catch(function(err){
                                         sails.log(err);
                                     });
                                 break;
-                            case 2:
+                            case 2: // Help me file
+                            console.log('2');
                                 ReportSession
                                     .update({'sessionId': req.sessionID}, {stage: 3, what: req.body.Body})
                                     .catch(function(err){
                                         sails.log(err);
                                     });
                                 break;
-                            case 3: 
-                                var isCurrentlyHappening = req.body.Body.toLowerCase() === 'yes' ? true : false;
-                                stage = 4;
-                                if (isCurrentlyHappening) { stage = 6; }
+                            case 3: // Where
+                            console.log('3');
                                 ReportSession
-                                    .update({'sessionId': req.sessionID}, {stage: stage, isCurrentlyHappening: isCurrentlyHappening})
+                                    .update({'sessionId': req.sessionID}, {stage: 4})
                                     .catch(function(err){
                                         sails.log(err);
                                     });
                                 break;
-                            case 4:
+                            case 4: // Currently Happening
+                            console.log('4');
+                            
+                                var isCurrentlyHappening;
+                                var s;
+                                if (req.body.Body.toLowerCase() === 'yes') {
+                                    console.log("HAPPENING");
+                                    isCurrentlyHappening = true;
+                                    s = 6;
+                                } else {
+                                    console.log("NOT HAPPENING");
+                                    isCurrentlyHappening = false;
+                                    s = 5;
+                                }
                                 ReportSession
-                                    .update({'sessionId': req.sessionID}, {stage: 5})
+                                    .update({'sessionId': req.sessionID}, {stage: s, isCurrentlyHappening: isCurrentlyHappening})
                                     .catch(function(err){
                                         sails.log(err);
                                     });
                                 break;
-                            case 5:
+                            case 5: // When
+                            console.log('5');
                                 ReportSession
                                     .update({'sessionId': req.sessionID}, {stage: 6})
                                     .catch(function(err){
                                         sails.log(err);
                                     });
                                 break;
-                            case 6:
-                            case 7:
+                            case 6: // Describe
+                            console.log('6');
+                            case 7: // Describe
+                            console.log('7');
                             if (reportSession.description) { description = reportSession.description; }
                                 description.push({text: req.body.Body});
                                 ReportSession
-                                    .update({'sessionId': req.sessionID}, {stage: 7, description: description})
+                                    .update({'sessionId': req.sessionID}, {stage: 6, description: description})
                                     .catch(function(err){
                                         sails.log(err);
                                     });
@@ -92,6 +115,7 @@ module.exports = {
                         }
                     } // Otherwise do nothing
                     if (ResponseService.questionResponse(stage+1)) {
+                        console.log("Question: "+stage);
                         res.send(ResponseService.questionResponse(stage+1));
                     } else {
                         res.send(200);

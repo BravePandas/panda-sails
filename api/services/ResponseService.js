@@ -48,12 +48,16 @@
                 question = t[5];
                 break;
             case 6:
-            case 7:
-            case 8:
                 question = t[6];
                 break;
-            case 999:
+            case 7:
                 question = t[7];
+                break;
+            case 8:
+                question = t[8];
+                break;
+            case 999:
+                question = t[8];
                 break;
         }
         if (question) {
