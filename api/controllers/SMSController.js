@@ -10,6 +10,11 @@
 module.exports = {
     request: function(req, res) 
     {
+        
+        var language = 'en';
+        
+        console.log(req);
+        
         // TODO: Known issue of new sessions
         req.sessionID = 'override';
         var stage;
@@ -18,7 +23,7 @@ module.exports = {
                 .update({sessionId: req.sessionID}, {complete: true, sessionId: req.sessionID+'-'+Math.random().toString(36).substring(7)}).then(function(){
                     ReportSession
                         .create({stage: 1, sessionId: req.sessionID}).then(function(){
-                            res.send(ResponseService.questionResponse(1));
+                            res.send(ResponseService.questionResponse(1, language));
                         }).catch(function(err){
                             sails.log(err);
                         });
@@ -30,7 +35,7 @@ module.exports = {
             console.log('finished');
             ReportSession
                 .update({sessionId: req.sessionID}, {complete: true, sessionId: req.sessionID+'-'+Math.random().toString(36).substring(7)}).then(function(){
-                    res.send(ResponseService.questionResponse(999));
+                    res.send(ResponseService.questionResponse(999, language));
                 }).catch(function(err){
                     sails.log(err);
                 });
@@ -80,7 +85,7 @@ module.exports = {
                                 if (req.body.Body.toLowerCase() === 'yes') {
                                     console.log("HAPPENING");
                                     isCurrentlyHappening = true;
-                                    s = 7;
+                                    s = 6;
                                 } else {
                                     console.log("NOT HAPPENING");
                                     isCurrentlyHappening = false;
@@ -114,9 +119,9 @@ module.exports = {
                                 break;
                         }
                     } // Otherwise do nothing
-                    if (ResponseService.questionResponse(stage+1)) {
+                    if (ResponseService.questionResponse(stage+1, language)) {
                         console.log("Question: "+stage);
-                        res.send(ResponseService.questionResponse(stage+1));
+                        res.send(ResponseService.questionResponse(stage+1, language));
                     } else {
                         res.send(200);
                     }

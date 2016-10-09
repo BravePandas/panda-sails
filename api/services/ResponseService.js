@@ -13,14 +13,15 @@
             7: 'Please give as much detail as you can. Say bye to finish',
             8: 'Thank you, I’ve told the rangers. If you’re happy to be contacted, tell me your name. You will remain anonymous if you don’t respond.'
         },
-        'ro': {
-            1: '',
-            2: '',
-            3: '',
-            4: '',
-            5: '',
-            6: '',
-            7: ''
+        'za': {
+            1: "Hallo, Rafiki hier. Wat sou jy graag aan te meld? ",
+            2: "Help my leer dat jou verslag \n \n Pick 'n aantal. \n \n 1 Stropery \n 2. Handel en onwettige handel \n 3. mens-dier konflik \n 4. Intelligensie",
+            3: "Waar is dit gebeur",
+            4: "Is dit gebeur nou?",
+            5: "Wanneer het dit gebeur",
+            6: "Asseblief beskryf die voorval. Jy kan foto's te stuur",
+            7: "Gee soveel detail as wat jy kan. Sê totsiens tot einde",
+            8: "Dankie, ek het die veldwagters vertel. As jy gelukkig is om gekontak is, sê dit vir my jou naam. Jy sal anoniem bly as jy nie reageer nie."
         }
     };
 
