@@ -12,6 +12,9 @@ module.exports = {
     {
         
         var language = 'en';
+        if (req.body && req.body.To === "+447400274155") {
+            language = 'za';
+        }
         
         console.log(req);
         
