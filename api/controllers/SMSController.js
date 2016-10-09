@@ -12,12 +12,11 @@ module.exports = {
     {
         
         var language = 'en';
+        console.log(req.body.To);
         if (req.body && req.body.To === "+447400274155") {
             language = 'za';
         }
-        
-        console.log(req);
-        
+
         // TODO: Known issue of new sessions
         req.sessionID = 'override';
         var stage;
