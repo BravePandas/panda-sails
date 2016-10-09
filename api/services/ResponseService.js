@@ -29,6 +29,8 @@
     var questionResponse = function(stage, language)
     {
         var question;
+        
+        console.log(language);
 
         var t = translations[language || 'en'];
         
